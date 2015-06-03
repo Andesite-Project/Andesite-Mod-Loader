@@ -29,7 +29,7 @@ apply from: 'api/common_build.gradle'
 apply plugin: 'forge'
 
 minecraft {
-	version = "1.8-11.14.1.1409"
+	version = "1.8-11.14.1.1354"
 	runDir = "eclipse"
 
 	mappings = "snapshot_20141130"
