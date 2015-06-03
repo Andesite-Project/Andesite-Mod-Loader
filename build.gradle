@@ -22,6 +22,9 @@ buildscript {
 	}
 }
 
+// apply the common build behavior
+apply from: 'api/common_build.gradle'
+
 // apply the forge plugin
 apply plugin: 'forge'
 
@@ -80,5 +83,3 @@ processResources {
 		exclude 'mcmod.info'
 	}
 }
-
-apply from: 'api/common_build.gradle'
