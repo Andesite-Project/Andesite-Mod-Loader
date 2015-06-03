@@ -1,0 +1,84 @@
+// configure the buildscript
+buildscript {
+  // repositories for the buildscript
+	repositories {
+    // maven central
+		mavenCentral()
+    // forge repo
+		maven {
+			name = "forge"
+			url = "http://files.minecraftforge.net/maven"
+		}
+    // sonatype nexus repo
+		maven {
+			name = "sonatype"
+			url = "https://oss.sonatype.org/content/repositories/snapshots/"
+		}
+	}
+  // buildscript dependencies
+	dependencies {
+    // load forgegradle
+		classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+	}
+}
+
+// apply the forge plugin
+apply plugin: 'forge'
+
+minecraft {
+	version = "1.8-11.14.1.1409"
+	runDir = "eclipse"
+
+	mappings = "snapshot_20141130"
+}
+
+// Repositories
+repositories {
+
+	//Central
+	mavenCentral()
+
+	// Forge
+	maven {
+		name = "forge"
+		url = "http://files.minecraftforge.net/maven"
+	}
+
+	// Sonatype
+	maven {
+		name = "sonatype"
+		url = "https://oss.sonatype.org/content/repositories/snapshots/"
+	}
+
+	// ChickenBones
+	maven {
+		name = "chickenbones"
+		url = "http://chickenbones.net/maven"
+	}
+}
+
+// Dependencies
+dependencies {
+
+}
+
+processResources {
+	// this will ensure that this task is redone when the versions change.
+	inputs.property "version", project.version
+	inputs.property "mcversion", project.minecraft.version
+
+	// replace stuff in mcmod.info, nothing else
+	from(sourceSets.main.resources.srcDirs) {
+		include 'mcmod.info'
+
+		// replace version and mcversion
+		expand 'version':project.version, 'mcversion':project.minecraft.version
+	}
+
+	// copy everything else, thats not the mcmod.info
+	from(sourceSets.main.resources.srcDirs) {
+		exclude 'mcmod.info'
+	}
+}
+
+apply from: 'api/common_build.gradle'
