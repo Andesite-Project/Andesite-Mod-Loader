@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  */
 public abstract class ForgeItemStackTranslator {
     public static AndesiteItemStack translate(ItemStack stack) {
-        return new AndesiteItemStack(GameRegistry.findUniqueIdentifierFor(stack.getItem()).toString(), stack.stackSize, stack.getMetadata());
+        return AndesiteItemStack.create(GameRegistry.findUniqueIdentifierFor(stack.getItem()).toString(), stack.stackSize, stack.getMetadata());
     }
     
     public static ItemStack translate(AndesiteItemStack stack) {
